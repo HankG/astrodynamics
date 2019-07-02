@@ -1,7 +1,12 @@
 package org.b612foundation.adam.datamodel;
 
-import java.util.Objects;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Builder
 public class SinglePropagation extends AdamObject {
 
   /** Parameters used to generate the ephemeris of this propagation. Null if unknown. */
@@ -34,59 +39,5 @@ public class SinglePropagation extends AdamObject {
    * Units: seconds-since-file-epoch, meters, meters, meters, meters/second, meters/second, meters/second
    */
   private String finalStateVector;
-
-  public PropagationParameters getPropagationParameters() {
-    return propagationParameters;
-  }
-
-  public SinglePropagation setPropagationParameters(PropagationParameters propagationParameters) {
-    this.propagationParameters = propagationParameters;
-    return this;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public SinglePropagation setDescription(String description) {
-    this.description = description;
-    return this;
-  }
-
-  public String getEphemeris() {
-    return ephemeris;
-  }
-
-  public SinglePropagation setEphemeris(String ephemeris) {
-    this.ephemeris = ephemeris;
-    return this;
-  }
-
-  public String getFinalStateVector() {
-    return finalStateVector;
-  }
-
-  public SinglePropagation setFinalStateVector(String finalStateVector) {
-    this.finalStateVector = finalStateVector;
-    return this;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), propagationParameters, ephemeris, finalStateVector);
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    SinglePropagation other = (SinglePropagation) obj;
-    return super.equals(other) && Objects.equals(propagationParameters, other.propagationParameters)
-        && Objects.equals(ephemeris, other.ephemeris) && Objects.equals(finalStateVector, other.finalStateVector);
-  }
 
 }

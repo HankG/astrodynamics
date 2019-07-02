@@ -1,10 +1,15 @@
 package org.b612foundation.adam.datamodel;
 
-import java.util.Objects;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Represents a targeted propagation to at least a certain distance from earth.
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Builder
 public class TargetedPropagation extends AdamObject {
 
   /**
@@ -41,90 +46,5 @@ public class TargetedPropagation extends AdamObject {
   private double maneuverX;
   private double maneuverY;
   private double maneuverZ;
-
-  public PropagationParameters getInitialPropagationParameters() {
-    return initialPropagationParameters;
-  }
-
-  public TargetedPropagation setInitialPropagationParameters(PropagationParameters initialPropagationParameters) {
-    this.initialPropagationParameters = initialPropagationParameters;
-    return this;
-  }
-
-  public TargetingParameters getTargetingParameters() {
-    return targetingParameters;
-  }
-
-  public TargetedPropagation setTargetingParameters(TargetingParameters targetingParameters) {
-    this.targetingParameters = targetingParameters;
-    return this;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public TargetedPropagation setDescription(String description) {
-    this.description = description;
-    return this;
-  }
-
-  public String getEphemeris() {
-    return ephemeris;
-  }
-
-  public TargetedPropagation setEphemeris(String ephemeris) {
-    this.ephemeris = ephemeris;
-    return this;
-  }
-
-  public double getManeuverX() {
-    return maneuverX;
-  }
-
-  public TargetedPropagation setManeuverX(double maneuverX) {
-    this.maneuverX = maneuverX;
-    return this;
-  }
-
-  public double getManeuverY() {
-    return maneuverY;
-  }
-
-  public TargetedPropagation setManeuverY(double maneuverY) {
-    this.maneuverY = maneuverY;
-    return this;
-  }
-
-  public double getManeuverZ() {
-    return maneuverZ;
-  }
-
-  public TargetedPropagation setManeuverZ(double maneuverZ) {
-    this.maneuverZ = maneuverZ;
-    return this;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode(), initialPropagationParameters, targetingParameters, description, ephemeris,
-        maneuverX, maneuverY, maneuverZ);
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    TargetedPropagation other = (TargetedPropagation) obj;
-    return super.equals(other) && Objects.equals(initialPropagationParameters, other.initialPropagationParameters)
-        && Objects.equals(targetingParameters, other.targetingParameters)
-        && Objects.equals(description, other.description) && Objects.equals(ephemeris, other.ephemeris)
-        && Objects.equals(maneuverX, other.maneuverX) && Objects.equals(maneuverY, other.maneuverY)
-        && Objects.equals(maneuverZ, other.maneuverZ);
-  }
 
 }

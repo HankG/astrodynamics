@@ -1,11 +1,17 @@
 package org.b612foundation.adam.datamodel;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Represents a calculation to compute accesses between the LSST and an asteroid.
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 public class LsstAccessCalculation extends AdamObject {
 
   /**
@@ -46,89 +52,4 @@ public class LsstAccessCalculation extends AdamObject {
    */
   private List<String> accesses;
 
-  public PropagationParameters getAsteroidPropagationParameters() {
-    return asteroidPropagationParameters;
-  }
-
-  public void setAsteroidPropagationParameters(PropagationParameters asteroidPropagationParameters) {
-    this.asteroidPropagationParameters = asteroidPropagationParameters;
-  }
-
-  public String getAsteroidPropagationUuid() {
-    return asteroidPropagationUuid;
-  }
-
-  public void setAsteroidPropagationUuid(String asteroidPropagationUuid) {
-    this.asteroidPropagationUuid = asteroidPropagationUuid;
-  }
-
-  public String getAccessStartTime() {
-    return accessStartTime;
-  }
-
-  public void setAccessStartTime(String accessStartTime) {
-    this.accessStartTime = accessStartTime;
-  }
-
-  public String getAccessEndTime() {
-    return accessEndTime;
-  }
-
-  public void setAccessEndTime(String accessEndTime) {
-    this.accessEndTime = accessEndTime;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public LsstAccessCalculation setDescription(String description) {
-    this.description = description;
-    return this;
-  }
-
-  public String getPointingsTableName() {
-    return pointingsTableName;
-  }
-
-  public void setPointingsTableName(String pointingsTableName) {
-    this.pointingsTableName = pointingsTableName;
-  }
-
-  public List<String> getAccesses() {
-    return accesses;
-  }
-
-  public void setAccesses(List<String> accesses) {
-    this.accesses = accesses;
-  }
-
-  @Override
-  public int hashCode() {
-    // Note about list hashing. In Object.hash, "if the array contains other arrays as elements, the hash code is based
-    // on their identities rather than their contents." Since that's not what we want for lists - we want contents-based
-    // hashing - we have to use the hashcode computed by the list itself (which uses the elements) instead of the
-    // hashcode computed by Objects.
-    return Objects.hash(super.hashCode(), asteroidPropagationParameters, asteroidPropagationUuid, accessStartTime,
-        accessEndTime, pointingsTableName, description, accesses == null ? null : accesses.hashCode());
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    LsstAccessCalculation other = (LsstAccessCalculation) obj;
-    // Note about list equality: Objects will not consider list contents, so we need to use List.equals directly. See
-    // note on hashCode.
-    return super.equals(other) && Objects.equals(asteroidPropagationParameters, other.asteroidPropagationParameters)
-        && Objects.equals(asteroidPropagationUuid, other.asteroidPropagationUuid)
-        && Objects.equals(accessStartTime, other.accessStartTime) && Objects.equals(accessEndTime, other.accessEndTime)
-        && Objects.equals(pointingsTableName, other.pointingsTableName)
-        && Objects.equals(description, other.description) && accesses == null ? other.accesses == null
-            : accesses.equals(other.accesses);
-  }
 }
